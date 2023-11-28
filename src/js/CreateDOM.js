@@ -40,12 +40,23 @@ export default class CreateDOM extends MainElement {
 
   drawingDOM() {
     if (window.localStorage.getItem("DOM")) {
-
       for (const scroll of this.allScroll) {
         this.storage.local[scroll.getAttribute("name")].forEach((e) => {
           scroll.appendChild(CreateDOM.createDivNode(e));
         });
       }
     }
+  }
+
+  static proection(node) {
+    const div = document.createElement("div");
+    div.classList.add("proection");
+    const { width, height } = window.getComputedStyle(node);
+    div.style.cssText = `
+	 			width: ${width};
+		 		height: ${height};
+		 		margin: 10px 0;
+			`;
+    return div;
   }
 }
